@@ -34,8 +34,8 @@ const {
   ],obtenerPrestamos);
 
   router.get('/inofrme/:idUsuario',[
-    //validarJWT,
-    //validarROL,
+    validarJWT,
+    validarROL,
     param('idUsuario').custom(validarIdExiste),
     validarCampos,
   ],obtenerPrestamosHistorial);

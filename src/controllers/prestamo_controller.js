@@ -8,9 +8,13 @@ const Prestamo = require('../models/Prestamo_model');
 const Evaluacion = require('../models/evaluacion_model');
 const Solicitud = require('../models/solicitudes.model');
 const Historial = require('../models/historialMov_model');
+const Usuario = require('../models/user_model');
+const Documento = require('../models/doc_model');
 
 
 res = response;
+
+
 
 const obtenerPrestamosHistorial = async (req,res) => {
   const {idUsuario}= req.params;
@@ -251,7 +255,9 @@ const crearPrestamo = async (req, res ) => {
       tasaInteres,
       deuda:(montoTotal*(tasaInteres/100+1)),
       montoTotal,
-      metodoPago
+      metodoPago,
+      descrip1:null,
+      descrip2:null,
     })
 
     const cantidad = await Prestamo.count({where:{idPrestamista:idPrestamista}})

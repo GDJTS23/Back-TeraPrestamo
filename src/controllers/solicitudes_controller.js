@@ -7,6 +7,7 @@ const Prestamista = require('../models/prestamista_model');
 const Prestamo = require('../models/Prestamo_model');
 const Solicitud = require('../models/solicitudes.model');
 const Usuario = require('../models/user_model');
+const Documento = require('../models/doc_model');
 
 
 res = response;
@@ -51,9 +52,23 @@ const obtenerSolicitudes = async (req, res ) => {
     try {
 
       const prestamista = await Prestamista.findOne({where:{idUsuario}})
+      const solicitud = await Solicitud.findByPk(idSolicitud)
+      const prestatrio = await Prestatario.findByPk(solicitud.idPrestatario)
       if (prestamista){
           if((estado=='Aceptada')==true){
-            const prestamo = await Prestamo.update({estadoPrestamo:'Activo'}, {where:{idPrestamo}})
+
+            const usuarioPrestamista = await Usuario.findOne({where:{idUsuario:prestamista.idUsuario}})
+            const docPrestamista = await Documento.findOne({where:{idUsuario:prestamista.idUsuario}})
+
+            const usuarioPretatario = await Usuario.findOne({where:{idUsuario:prestatrio.idUsuario}})
+            const docPrestatrio = await Documento.findOne({where:{idUsuario:prestatrio.idUsuario}})
+
+            const prestamo = await Prestamo.update({estadoPrestamo:'Activo',
+            descrip1:(usuarioPrestamista.nombre+' '+usuarioPrestamista.apellido+'\n'+'Tlf: '+usuarioPrestamista.telefono+'\n'+'Nro Bancario: '+docPrestamista.banco+docPrestamista.numCuenta), 
+            descrip2:(usuarioPretatario.nombre+' '+usuarioPretatario.apellido+'\n'+'Tlf: '+usuarioPretatario.telefono+'\n'+'Nro Bancario: '+docPrestatrio.banco+docPrestatrio.numCuenta)}, 
+            {where:{idPrestamo}})
+
+
             const solicitud = await Solicitud.update({estado:'Aceptada'}, {where:{idSolicitud}})
             await Solicitud.update({estado:'Rechazada'}, {where:{
               idPrestamo,

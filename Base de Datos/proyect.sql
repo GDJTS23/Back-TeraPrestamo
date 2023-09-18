@@ -1,6 +1,3 @@
-create database if not exists TeraPrestamo;
-use TeraPrestamo;
-
 create table usuarios (
 idUsuario varchar(255) not null,
 nombre varchar(255), 
@@ -13,6 +10,7 @@ contraseña varchar(255),
 preguntaSeguridad enum ('¿Cuándo es tu cumpleaños?', '¿Cómo se llamaba tu mamá?'), 
 respuestaSeguridad varchar(255),  
 tipoUsuario enum ('Prestamista', 'Prestatario'),
+fechaNac date,
 primary key(idUsuario));
 
 create table documentos (
@@ -63,6 +61,8 @@ fechaFinal date,
 tasaInteres float,
 abonado float not null,
 montoTotal float not null,
+metodoPago varchar(255),
+deuda float,
 primary key(idPrestamo),
 foreign key(idPrestamista) references perfilPrestamistas (idPrestamista)on delete cascade);
 
@@ -71,7 +71,8 @@ idSolicitud varchar(255) not null,
 idPrestatario varchar(255) not null,
 idPrestamo varchar(255) not null,
 estado  varchar(255) not null,
-fecha date, 
+fecha date,
+PrestatarioNom varchar(255),
 primary key(idSolicitud),
 foreign key(idPrestamo) references Prestamos (idPrestamo)on delete cascade,
 foreign key(idPrestatario) references perfilPrestatarios (idPrestatario)on delete cascade);

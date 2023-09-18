@@ -57,6 +57,16 @@ const Prestamo = conexion.define('Prestamo', {
         type: DataTypes.ENUM('Transferencia','Pago Movil'),
         validate: { isIn:{ args: [['Transferencia','Pago Movil']]} },
     },
+    descrip1:{
+        allowNull: true,
+        type: DataTypes.STRING,
+        defaultValue:''
+    }, 
+    descrip2:{
+        allowNull: true,
+        type: DataTypes.STRING,
+        defaultValue: ''
+    },
 },{
     modelName: 'Prestamo',
     tableName: 'Prestamos',

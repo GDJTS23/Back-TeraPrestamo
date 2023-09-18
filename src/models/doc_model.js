@@ -38,7 +38,7 @@ const Documento = conexion.define('Documento', {
     }
 },{
     modelName: 'Documento',
-    tableName: 'Documentos',
+    tableName: 'documentos',
     underscored: false,
     timestamps: false,
     paranoid: true,

@@ -8,7 +8,7 @@ const {
     actualizarPrestamos,
     crearPrestamo,
     eliminarPrestamo,
-    obtenerPrestamosAct
+    obtenerPrestamosAct,
   } = require ('../controllers/prestamo_controller')
 
   const {

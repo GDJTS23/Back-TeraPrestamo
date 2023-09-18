@@ -44,9 +44,11 @@ const Documento = conexion.define('Documento', {
     paranoid: true,
 
   });
-/*Documento.hasOne(Usuario, {
+Usuario.hasOne(Documento, {
     foreignKey: 'idUsuario'
 });
-Documento.belongsTo(Usuario);*/
+Documento.belongsTo(Usuario,{
+    foreignKey: 'idUsuario'
+  });
 
 module.exports = Documento;

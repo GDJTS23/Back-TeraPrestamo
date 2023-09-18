@@ -34,7 +34,6 @@ validarROL,
   check('nombre', 'El nombre es obligatorio').not().isEmpty(),
   check('apellido', 'El apellido es obligatorio').not().isEmpty(),
   check('telefono', 'El telefono es obligatorio').not().isEmpty(),
-  check('fechaNac', 'Fecha no valida').not().isEmpty().isDate(),
   check('nomUsuario', 'El Nombre de Usuario es obligatorio').not().isEmpty().custom(validarNombreUsuarioExiste).optional(),
   validarCampos,
 actualizarUsuario);

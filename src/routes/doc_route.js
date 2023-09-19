@@ -36,7 +36,7 @@ const {
     validarJWT,
     validarROL,
     param('idUsuario').custom(validarIdExiste),
-    check('numCuenta', 'El Numero de Cuenta es obligatorio').not().isEmpty().isLength({min:20,max:20}),
+    check('numCuenta', 'El Numero de Cuenta es obligatorio, y debe ser un minimo de 20 digitos').not().isEmpty().isLength({min:20,max:20}),
     check('banco', 'El Banco es obligatorio').not().isEmpty(),
     validarCampos,
   ],crearDoc);

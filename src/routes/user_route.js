@@ -41,7 +41,7 @@ actualizarUsuario);
 router.post('/', [
   check('nombre', 'El nombre no es valido').notEmpty().not().isNumeric(),
   check('apellido', 'El apellido no es valido').notEmpty().not().isNumeric(),
-  check('cedula', 'La cédula es obligatoria y debe tener 8 caracteres').not().isEmpty().isLength({min:8,max:8}).custom(validarCedulaExiste),
+  check('cedula', 'La cédula es obligatoria y debe tener 7 u 8 caracteres').not().isEmpty().isLength({min:7,max:8}).custom(validarCedulaExiste),
   check('email', 'El correo no es valido').isEmail().not().isEmpty().custom(validarCorreoExiste),
   check('telefono', 'El telefono es obligatorio y debe tener 11 caracteres').not().isEmpty().isLength({min:11,max:11}),
   check('nomUsuario', 'El Nombre de Usuario es obligatorio').not().isEmpty().custom(validarNombreUsuarioExiste),
